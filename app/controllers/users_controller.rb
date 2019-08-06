@@ -10,11 +10,12 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def create
+  def create #signs up new users
     @user = User.new(user_params)
+    # byebug
     if @user.save
-      log_in(@user)
-      flash[:success] = "Welcome to the Sample App!"
+      log_in(@user) #sets session id for user
+      # flash[:success] = "Welcome to the Sample App!"
       redirect_to @user
     else
       render 'new'
