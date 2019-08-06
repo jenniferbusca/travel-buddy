@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
+  root 'sessions#new'
   resources :itineraries
   resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'signup' => 'users#new'
-
-  root 'sessions#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
+  get '/auth/google_oauth2/', to: 'sessions#googleAuth'
+  get 'auth/google_oauth2/callback', to: 'sessions#googleAuth'
+  get 'auth/failure', to: redirect('/')
 
-
-  # get 'auth/facebook/callback' => 'sessions#create'
 end
