@@ -2,7 +2,7 @@ class User < ApplicationRecord
   has_many :itineraries
   has_many :itinerary_activities, through: :itinerary
   has_secure_password
-  before_save {self.email = email.downcase}
+  # before_save {self.email = email.downcase}
 
   validates :username, presence: true,
     uniqueness: {case_sensitive: false},
