@@ -1,4 +1,9 @@
-<%= @user.name %>, <%= @user.email %>
+<%= @user.name %>
+<br>
+<%= @user.email %>
+<br>
+<%= link_to "Create new Itinerary", new_itinerary_path %>
+<br>
 <%= link_to "Edit User", edit_user_path(@user)%>
 <br>
 <%= link_to "Log Out", logout_path(@user), method: :delete %>

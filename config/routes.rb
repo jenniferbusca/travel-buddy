@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root 'sessions#new'
-  resources :itineraries
+
   resources :users
+  resources :itineraries
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
