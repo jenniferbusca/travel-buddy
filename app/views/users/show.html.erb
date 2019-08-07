@@ -4,6 +4,32 @@
 <br>
 <%= link_to "Create new Itinerary", new_itinerary_path %>
 <br>
+In progress Itineraries:
+<br>
+<% unless @in_progress_itineraries.blank? %>
+  <% @in_progress_itineraries.each do |itinerary| %>
+    <%= link_to itinerary.name, itinerary_path(itinerary) %><br>
+      Start Date: <%= itinerary.start_date.strftime("%m/%d/%Y") %>
+      <br>
+      End Date: <%= itinerary.end_date.strftime("%m/%d/%Y") %>
+      <br>
+  <% end %>
+<% else %>
+You have no in progress itineraries.
+<% end %>
+<br>
+Upcoming Itineraries:
+<% unless @future_itineraries.blank? %>
+  <% @future_itineraries.each do |itinerary| %>
+    <%= link_to itinerary.name, itinerary_path(itinerary) %><br>
+      Start Date: <%= itinerary.start_date.strftime("%m/%d/%Y")  %>
+      End Date: <%= itinerary.end_date.strftime("%m/%d/%Y")  %>
+      <br>
+  <% end %>
+<% else %>
+You have no in future itineraries.
+<% end %>
+<br>
 <%= link_to "Edit User", edit_user_path(@user)%>
 <br>
 <%= link_to "Log Out", logout_path(@user), method: :delete %>
