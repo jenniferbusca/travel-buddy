@@ -1,0 +1,3 @@
+class CS < ApplicationRecord
+
+end

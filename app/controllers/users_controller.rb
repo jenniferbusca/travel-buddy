@@ -4,8 +4,6 @@ class UsersController < ApplicationController
   def show
     if session[:user_id]
       @user = User.find(session[:user_id])
-      @in_progress_itineraries = @user.itineraries.select {| itinerary | itinerary.in_progress?}
-      @future_itineraries = @user.itineraries.select {| itinerary | itinerary.future_itinerary?}
     end
   end
 

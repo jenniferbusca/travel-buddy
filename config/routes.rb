@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :itineraries
+  resources :itinerary_activities
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

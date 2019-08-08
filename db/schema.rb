@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_06_192943) do
+ActiveRecord::Schema.define(version: 2019_08_08_141948) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -31,12 +31,13 @@ ActiveRecord::Schema.define(version: 2019_08_06_192943) do
   create_table "itinerary_activities", force: :cascade do |t|
     t.datetime "start_date"
     t.datetime "start_time"
-    t.string "duration"
+    t.datetime "end_time"
     t.integer "location_id"
     t.integer "activity_id"
     t.integer "itinerary_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "end_date"
   end
 
   create_table "locations", force: :cascade do |t|

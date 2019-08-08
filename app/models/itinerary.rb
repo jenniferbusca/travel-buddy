@@ -18,4 +18,5 @@ class Itinerary < ApplicationRecord
   def trip_length
     end_date - start_date
   end
+
 end
