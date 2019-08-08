@@ -1,3 +1,0 @@
-class CS < ApplicationRecord
-
-end

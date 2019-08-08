@@ -1,6 +1,11 @@
-<%= @itinerary.name %> <br>
-<%= @itinerary.start_date.strftime("%m/%d/%Y") %> <br>
-<%= @itinerary.end_date.strftime("%m/%d/%Y") %> <br>
-<%= link_to "Add Activity", new_itinerary_activity_path %> <br>
+Trip Name: <%= @itinerary.name %> <br>
+Departure Date: <%= @itinerary.start_date.strftime("%m/%d/%Y") %> <br>
+Return Date: <%= @itinerary.end_date.strftime("%m/%d/%Y") %> <br>
+Planned Activities:
+<% @itinerary_activities.each do |itinerary_activity| %>
+  <%= link_to itinerary_activity.activity.name, itinerary_activity_path(itinerary_activity) %><br>
+<% end %>
+<br>
+<%= link_to "Add Activity", new_itinerary_itinerary_activity_path(@itinerary) %> <br>
 <%= link_to "Edit Itinerary", edit_itinerary_path(@itinerary)%> <br>
 <%= link_to "Delete Itinerary", @itinerary, method: :delete, data: { confirm: 'Are you sure?' } %>

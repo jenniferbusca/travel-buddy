@@ -21,6 +21,7 @@ class ItinerariesController < ApplicationController
   end
 
   def show
+    @itinerary_activities = ItineraryActivity.where(:itinerary_id => @itinerary.id)
   end
 
   def edit

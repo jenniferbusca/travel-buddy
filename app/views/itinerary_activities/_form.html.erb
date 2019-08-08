@@ -9,12 +9,23 @@
   <%= f.label :end_time %>
   <%= f.time_field :end_time%>
   <br>
-  <%= f.label :activity %>
-  <%= f.collection_select :activity_id, Activity.all, :id, :name %>
+  <%= f.label :activity_name %>
+  <%= f.text_field :activity_name, list: "activity_autocomplete" %>
+  <datalist id="activity_autocomplete">
+    <% Activity.all.each do |activity| %>
+      <option value="<%= activity.name %>">
+    <% end %>
+  </datalist>
+  <!-- <input name="itinerary_activity[activity_name][]"> -->
   <br>
-  <%= f.label :location %>
-  <%= f.collection_select :location_id, Location.order(:country), :id, :full_name, include_blank: true%>
-  <br>
-
+  <%= f.label :location_name %>
+  <%= f.text_field :location_name, list: "location_autocomplete" %>
+  <datalist id="location_autocomplete">
+    <% Location.all.each do |location| %>
+      <option value="<%= location.name %>">
+    <% end %>
+  </datalist>
+  <%= f.hidden_field :itinerary_id, :value => @itinerary_id %>
+<br>
   <%= f.submit submit_text %>
 <% end %>
