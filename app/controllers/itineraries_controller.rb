@@ -37,7 +37,6 @@ class ItinerariesController < ApplicationController
     redirect_to itineraries_path
   end
 
-
   private
   def set_itinerary
     @itinerary = Itinerary.find(params[:id])

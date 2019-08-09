@@ -11,7 +11,7 @@ class ItineraryActivitiesController < ApplicationController
     if @itinerary_activity.save
       redirect_to itinerary_path(itinerary_activity_params[:itinerary_id])
     else
-      render 'new'
+      redirect_to new_itinerary_itinerary_activity_path(itinerary_activity_params[:itinerary_id])
     end
   end
 
@@ -38,6 +38,6 @@ class ItineraryActivitiesController < ApplicationController
   end
 
   def itinerary_activity_params
-    params.require(:itinerary_activity).permit(:start_date, :start_time, :end_date, :end_time, :location_name, :activity_name, :itinerary_id)
+    params.require(:itinerary_activity).permit(:start_date, :start_time, :end_date, :end_time, :location_name, :itinerary_id, :activity_name, activity_attributes: [:name, :category])
   end
 end

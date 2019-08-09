@@ -16,7 +16,12 @@
       <option value="<%= activity.name %>">
     <% end %>
   </datalist>
-  <!-- <input name="itinerary_activity[activity_name][]"> -->
+  <%= f.fields_for :activity_attributes do |activity_attribute| %>
+    <%= activity_attribute.label :name %>
+    <%= activity_attribute.text_field :name %><br>
+    <%= activity_attribute.label :category %>
+    <%= activity_attribute.text_field :category %><br>
+  <% end %>
   <br>
   <%= f.label :location_name %>
   <%= f.text_field :location_name, list: "location_autocomplete" %>
