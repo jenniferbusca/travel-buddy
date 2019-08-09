@@ -42,11 +42,8 @@ gem 'omniauth'
 gem 'dotenv-rails'
 # gem "omniauth-rails_csrf_protection" #gets rid of csrf vulnerability and destroys your application!!!
 
-# Calendar
-gem "simple_calendar", "~> 2.0"
-
-# Location gem
-gem 'city-state'
+# Bootstrap
+gem 'bootstrap', '~> 4.3', '>= 4.3.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

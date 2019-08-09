@@ -1,23 +1,31 @@
+
 <h1>Log in</h1>
 <% if flash[:error] %>
     <div id="error">
-       <%= flash[:error] %>
+       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <%= flash[:error] %>
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+         </button>
+       </div>
     </div>
 <% end %>
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:session, url: login_path) do |f| %>
 
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+  <section class = "page">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(:session, url: login_path) do |f| %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.submit "Log in", class: "btn btn-primary" %>
-    <% end %>
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
 
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
-    <%= link_to "Login with Google", 'auth/google_oauth2/' %>
+        <%= f.submit "Log in", class: "btn btn-primary" %>
+      <% end %>
+
+      <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+      <%= link_to "Login with Google", 'auth/google_oauth2/' %>
+    </div>
   </div>
-</div>
+</section>

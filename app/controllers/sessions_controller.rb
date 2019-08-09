@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      log_in user
+      log_in(user)
       redirect_to itineraries_path(user)
     else
       flash.now[:error] = 'Invalid email/password combination'
@@ -21,11 +21,10 @@ class SessionsController < ApplicationController
   end
 
   def googleAuth
-    @user = User.find_or_create_by(uid: auth['uid']) do |u|
+    @user = User.find_or_create_by(email: auth['email']) do |u|
       u.name = auth['info']['name']
       u.email = auth['info']['email']
       u.image = auth['info']['image']
-      u.uid = auth['info']['uid']
       access_token = auth
       u.google_token = auth.credentials.token
       refresh_token = auth.credentials.refresh_token# Refresh_token to request new auth Note: Refresh_token is only sent once during the first request
