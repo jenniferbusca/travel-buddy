@@ -1,26 +1,28 @@
 <%= form_for itinerary_activity do |f| %>
   <%= f.label :start_date %>
-  <%= f.date_field :start_date%>
+  <%= f.date_field :start_date, min: @itinerary.start_date, max: @itinerary.end_date %>
   <%= f.label :start_time %>
   <%= f.time_field :start_time%>
   <br>
   <%= f.label :end_date %>
-  <%= f.date_field :end_date%>
+  <%= f.date_field :end_date, min: @itinerary.start_date, max: @itinerary.end_date %>
   <%= f.label :end_time %>
   <%= f.time_field :end_time%>
   <br>
-  <%= f.label :activity_name %>
+  <%= f.label :activity_name, "Choose an existing activity:"%>
   <%= f.text_field :activity_name, list: "activity_autocomplete" %>
   <datalist id="activity_autocomplete">
     <% Activity.all.each do |activity| %>
       <option value="<%= activity.name %>">
     <% end %>
   </datalist>
+  <br>
+  Don't see your Activity? Create one here!
   <%= f.fields_for :activity_attributes do |activity_attribute| %>
-    <%= activity_attribute.label :name %>
-    <%= activity_attribute.text_field :name %><br>
-    <%= activity_attribute.label :category %>
-    <%= activity_attribute.text_field :category %><br>
+    <%= activity_attribute.label :name, "Activity Name:" %>
+    <%= activity_attribute.text_field :name %>
+    <%= activity_attribute.label :category, "Activity Category:" %>
+    <%= activity_attribute.text_field :category %>
   <% end %>
   <br>
   <%= f.label :location_name %>
@@ -30,7 +32,7 @@
       <option value="<%= location.name %>">
     <% end %>
   </datalist>
-  <%= f.hidden_field :itinerary_id, :value => @itinerary_id %>
+  <%= f.hidden_field :itinerary_id, :value => @itinerary.id %>
 <br>
   <%= f.submit submit_text %>
 <% end %>

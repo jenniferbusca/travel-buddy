@@ -4,6 +4,7 @@ class ItineraryActivitiesController < ApplicationController
   def new
     @itinerary_activity = ItineraryActivity.new
     @itinerary_id = params[:itinerary_id]
+    @itinerary = Itinerary.find(params[:itinerary_id])
   end
 
   def create
@@ -15,20 +16,17 @@ class ItineraryActivitiesController < ApplicationController
     end
   end
 
-  def show
-  end
-
   def edit
   end
 
   def update
-    @itinerary.update(itinerary_params)
+    @itinerary_activity.update(itinerary_activity_params)
     redirect_to itinerary_path(@itinerary)
   end
 
   def destroy
-    @itinerary.destroy
-    redirect_to itineraries_path
+    @itinerary_activity.destroy
+    redirect_to itinerary_activities_path
   end
 
 

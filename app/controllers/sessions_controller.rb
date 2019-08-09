@@ -21,8 +21,6 @@ class SessionsController < ApplicationController
   end
 
   def googleAuth
-    # Get access tokens from the google server
-    # Access_token is used to authenticate request made from the rails application to the google server
     @user = User.find_or_create_by(uid: auth['uid']) do |u|
       u.name = auth['info']['name']
       u.email = auth['info']['email']
@@ -34,11 +32,10 @@ class SessionsController < ApplicationController
       u.password = SecureRandom.urlsafe_base64
     end
     log_in(@user)
-    redirect_to itineraries_path(@user)
+    redirect_to itineraries_path
   end
 
   private
-
   def auth
     request.env['omniauth.auth']
   end
