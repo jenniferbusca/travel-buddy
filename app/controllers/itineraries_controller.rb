@@ -21,7 +21,7 @@ class ItinerariesController < ApplicationController
   end
 
   def show
-    @itinerary_activities = ItineraryActivity.where(:itinerary_id => @itinerary.id)
+    @itinerary_activities = ItineraryActivity.where(:itinerary_id => @itinerary.id).order(:start_date, :start_time)
   end
 
   def edit
@@ -29,7 +29,8 @@ class ItinerariesController < ApplicationController
 
   def update
     @itinerary.update(itinerary_params)
-    redirect_to itinerary_path(@itinerary)
+    render action: :edit
+    # redirect_to itinerary_path(@itinerary)
   end
 
   def destroy

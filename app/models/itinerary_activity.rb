@@ -4,14 +4,11 @@ class ItineraryActivity < ApplicationRecord
   belongs_to :location
   has_many :users, through: :itineraries
   accepts_nested_attributes_for :activity
-  validates_presence_of :start_date, :start_time, :end_date, :end_time, :location
-
-  def activity_attributes=(activity)
-    self.activity = Activity.find_or_create_by(name: activity[:name], category: activity[:category])
-  end
+  validates_presence_of :start_date, :start_time, :end_date, :end_time, :location, on: :create
+  validates :activity_datetime_valid?, acceptance: true
 
   def activity_name=(name)
-    self.activity = Activity.find_or_create_by(name: name)
+      self.activity = Activity.find_or_create_by(name: name)
   end
 
   def activity_name
@@ -19,13 +16,22 @@ class ItineraryActivity < ApplicationRecord
   end
 
   def location_name=(name)
-    # city_state = name.split(", ")
-    # self.location = Location.where(:city => city_state[0], :state => city_state[1]).first_or_create
     self.location = Location.find_or_create_by(name: name)
   end
 
   def location_name
      self.location ? self.location.name : nil
+  end
+
+  def activity_datetime_valid?
+    if self.start_date < self.end_date
+      true
+    elsif
+      self.end_date.to_date == self.start_date.to_date && self.start_time < self.end_time
+      true
+    else
+      false
+    end
   end
 
 end

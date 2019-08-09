@@ -1,4 +1,18 @@
 <%= form_for itinerary_activity do |f| %>
+  <% if itinerary_activity.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(itinerary_activity.errors.count, "error") %>
+        prohibited this activity from being saved:
+      </h2>
+
+      <ul>
+      <% itinerary_activity.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= f.label :start_date %>
   <%= f.date_field :start_date, min: @itinerary.start_date, max: @itinerary.end_date %>
   <%= f.label :start_time %>
@@ -9,27 +23,14 @@
   <%= f.label :end_time %>
   <%= f.time_field :end_time%>
   <br>
-  <%= f.label :activity_name, "Choose an existing activity:"%>
+  <%= f.label :location_name, "Location:" %>
+  <%= f.collection_select :location_name, Location.all, :name, :name %>
+  <br>
+  <%= f.label :activity_name, "Activity:"%>
   <%= f.text_field :activity_name, list: "activity_autocomplete" %>
   <datalist id="activity_autocomplete">
     <% Activity.all.each do |activity| %>
-      <option value="<%= activity.name %>">
-    <% end %>
-  </datalist>
-  <br>
-  Don't see your Activity? Create one here!
-  <%= f.fields_for :activity_attributes do |activity_attribute| %>
-    <%= activity_attribute.label :name, "Activity Name:" %>
-    <%= activity_attribute.text_field :name %>
-    <%= activity_attribute.label :category, "Activity Category:" %>
-    <%= activity_attribute.text_field :category %>
-  <% end %>
-  <br>
-  <%= f.label :location_name %>
-  <%= f.text_field :location_name, list: "location_autocomplete" %>
-  <datalist id="location_autocomplete">
-    <% Location.all.each do |location| %>
-      <option value="<%= location.name %>">
+      <option value="<%= activity.name.capitalize %>">
     <% end %>
   </datalist>
   <%= f.hidden_field :itinerary_id, :value => @itinerary.id %>

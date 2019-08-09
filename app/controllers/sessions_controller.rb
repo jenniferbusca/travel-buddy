@@ -25,6 +25,7 @@ class SessionsController < ApplicationController
       u.name = auth['info']['name']
       u.email = auth['info']['email']
       u.image = auth['info']['image']
+      u.uid = auth['info']['uid']
       access_token = auth
       u.google_token = auth.credentials.token
       refresh_token = auth.credentials.refresh_token# Refresh_token to request new auth Note: Refresh_token is only sent once during the first request

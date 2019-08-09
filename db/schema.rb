@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_09_010722) do
+ActiveRecord::Schema.define(version: 2019_08_09_204652) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 2019_08_09_010722) do
 
   create_table "itinerary_activities", force: :cascade do |t|
     t.datetime "start_date"
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.time "start_time"
+    t.time "end_time"
     t.integer "location_id"
     t.integer "activity_id"
     t.integer "itinerary_id"

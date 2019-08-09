@@ -3,6 +3,11 @@ class Itinerary < ApplicationRecord
   has_many :itinerary_activities
   has_many :activities, through: :itinerary_activities
   has_many :locations, through: :itinerary_activities
+  validates :end_date_valid?, acceptance: true
+
+  def end_date_valid?
+    self.end_date < self.start_date ? false : true
+  end
 
   def future_itinerary?
     self.start_date > Date.today ? true : false
