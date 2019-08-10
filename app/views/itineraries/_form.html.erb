@@ -2,10 +2,10 @@
   <% if itinerary.errors.any? %>
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <div id="error_explanation">
-        <h2>
+        <h3>
           <%= pluralize(itinerary.errors.count, "error") %>
           prohibited this itinerary from being saved:
-        </h2>
+        </h3>
 
         <ul>
         <% itinerary.errors.full_messages.each do |msg| %>
