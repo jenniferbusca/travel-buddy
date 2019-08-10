@@ -1,29 +1,55 @@
-<%= link_to "Create new Itinerary", new_itinerary_path %>
-<br>
-In progress Itineraries:
-<br>
+<section>
+<h3>In Progress Itineraries</h3>
 <% unless @in_progress_itineraries.blank? %>
-  <% @in_progress_itineraries.each do |itinerary| %>
-    <%= link_to itinerary.name, itinerary_path(itinerary) %><br>
-      Start Date: <%= itinerary.start_date.strftime("%m/%d/%Y")  %>
-      <br>
-      End Date: <%= itinerary.end_date.strftime("%m/%d/%Y")  %>
-      <br>
-  <% end %>
-<% else %>
-You have no in progress itineraries.
-<% end %>
-<br>
-Upcoming Itineraries:
-<br>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Itinerary Name</th>
+          <th scope="col">Departure Date</th>
+          <th scope="col">Return Date</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @in_progress_itineraries.each do |itinerary| %>
+        <tr>
+          <td><%= link_to itinerary.name, itinerary_path(itinerary) %></td>
+          <td><%= itinerary.start_date.strftime("%m/%d/%Y") %></td>
+          <td><%= itinerary.end_date.strftime("%m/%d/%Y") %></td>
+        </tr>
+        <% end %>
+    <% else %>
+    You have no itineraries in progress.
+    <% end %>
+  </tbody>
+</table>
+</section>
+<section>
+<h3>Future Itineraries</h3>
 <% unless @future_itineraries.blank? %>
-  <% @future_itineraries.each do |itinerary| %>
-    <%= link_to itinerary.name, itinerary_path(itinerary) %><br>
-      Start Date: <%= itinerary.start_date.strftime("%m/%d/%Y")  %>
-      <br>
-      End Date: <%= itinerary.end_date.strftime("%m/%d/%Y")  %>
-      <br>
-  <% end %>
-<% else %>
-You have no in future itineraries.
-<% end %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Itinerary Name</th>
+          <th scope="col">Departure Date</th>
+          <th scope="col">Return Date</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @future_itineraries.each do |itinerary| %>
+        <tr>
+          <td><%= link_to itinerary.name, itinerary_path(itinerary) %></td>
+          <td><%= itinerary.start_date.strftime("%m/%d/%Y") %></td>
+          <td><%= itinerary.end_date.strftime("%m/%d/%Y") %></td>
+          <td><%= link_to "Edit", edit_itinerary_path(itinerary) %></td>
+          <td><%= link_to "Delete", itinerary_path(itinerary), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %>
+    <% else %>
+    You have no future itineraries.
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "Create new Itinerary", new_itinerary_path %>
+</section>

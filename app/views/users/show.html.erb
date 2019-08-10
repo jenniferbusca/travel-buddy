@@ -1,9 +1,10 @@
-<%= @user.name %>
-<br>
-<%= @user.email %>
-<br>
-<%= link_to "Create new Itinerary", new_itinerary_path %>
-<br>
-<%= link_to "Edit User", edit_user_path(@user)%>
-<br>
-<%= link_to "Log Out", logout_path(@user), method: :delete %>
+<section>
+  <div class="card" style="width: 50%">
+    <div class="card-body">
+      <h5 class="card-title"><%= @user.name %></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= @user.email %></h6>
+      <%= link_to "Edit User", edit_user_path(@user), class: "card-link"%>
+      <%= link_to "Delete User", user_path(@user), method: :delete %>
+    </div>
+  </div>
+</section>

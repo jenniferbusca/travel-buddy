@@ -1,4 +1,4 @@
-<h1> Edit Your Account </h1>
-<%= render :partial => 'form', :locals => {user: @user, submit_text: "Save User"} %>
-<br>
-<%= link_to 'Delete User', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
+<section>
+  <h1> Edit Your Account </h1>
+  <%= render :partial => 'form', :locals => {user: @user, submit_text: "Save User"} %>
+</section>

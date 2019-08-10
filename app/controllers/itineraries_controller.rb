@@ -2,8 +2,8 @@ class ItinerariesController < ApplicationController
   before_action :set_itinerary, only: [:show, :edit, :update, :destroy]
 
   def index
-    @in_progress_itineraries = current_user.itineraries.select {| itinerary | itinerary.in_progress?}
-    @future_itineraries = current_user.itineraries.select {| itinerary | itinerary.future_itinerary?}
+    @in_progress_itineraries = current_user.itineraries.select {| itinerary | itinerary.in_progress?}.sort_by(&:start_date)
+    @future_itineraries = current_user.itineraries.select {| itinerary | itinerary.future_itinerary?}.sort_by(&:start_date)
   end
 
   def new

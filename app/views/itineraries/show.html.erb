@@ -1,18 +1,43 @@
-Trip Name: <%= @itinerary.name %> <br>
-Departure Date: <%= @itinerary.start_date.strftime("%m/%d/%Y") %> <br>
-Return Date: <%= @itinerary.end_date.strftime("%m/%d/%Y") %> <br>
-Planned Activities:<br>
-<% @itinerary_activities.each do |itinerary_activity| %>
-  <%= itinerary_activity.start_date.strftime("%m/%d/%Y") %> at <%= itinerary_activity.start_time.strftime("%l:%M %p") %>
-  until
-  <%= itinerary_activity.end_date.strftime("%m/%d/%Y") %> at <%= itinerary_activity.end_time.strftime("%l:%M %p") %>
-  <%= itinerary_activity.activity.name.capitalize%> in
-  <%= itinerary_activity.location.name%>
-  <%= link_to "Edit Activity", edit_itinerary_itinerary_activity_path(itinerary_id: @itinerary, id: itinerary_activity)%> <br>
-  <%= link_to "Delete Activity", itinerary_activity, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <br>
-<% end %>
-<br>
-<%= link_to "Add Activity", new_itinerary_itinerary_activity_path(@itinerary) %> <br>
-<%= link_to "Edit Itinerary", edit_itinerary_path(@itinerary)%> <br>
-<%= link_to "Delete Itinerary", @itinerary, method: :delete, data: { confirm: 'Are you sure?' } %>
+<section>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= @itinerary.name %> </h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= @itinerary.start_date.strftime("%m/%d/%Y") %> to <%= @itinerary.end_date.strftime("%m/%d/%Y") %> </h6>
+      <%= link_to "Edit Itinerary", edit_itinerary_path(@itinerary), class: "card-link" %>
+      <%= link_to "Back to Itinerary List", itineraries_path, class: "card-link" %>
+      <%= link_to "Delete Itinerary", @itinerary, method: :delete, data: { confirm: 'Are you sure?' }, class: "card-link"  %>
+    </div>
+  </div>
+</section>
+<section>
+<h3>Planned Activities</h3>
+<% unless @itinerary_activities.blank? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Activity</th>
+          <th scope="col">Start</th>
+          <th scope="col">End</th>
+          <th scope="col">Location</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @itinerary_activities.each do |itinerary_activity| %>
+        <tr>
+          <td><%= itinerary_activity.start_date.strftime("%m/%d/%Y") %> <%= itinerary_activity.start_time.strftime("%l:%M %p") %></td>
+          <td><%= itinerary_activity.end_date.strftime("%m/%d/%Y") %> <%= itinerary_activity.end_time.strftime("%l:%M %p") %></td>
+          <td><%= itinerary_activity.activity.name.capitalize%></td>
+          <td><%= itinerary_activity.location.name%></td>
+          <td><%= link_to "Edit", edit_itinerary_itinerary_activity_path(@itinerary) %></td>
+          <td><%= link_to "Delete", itinerary_activity_path(@itinerary), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+        <% end %>
+    <% else %>
+    You have no planned activities.
+    <% end %>
+  </tbody>
+</table>
+  <%= link_to "Add Activity", new_itinerary_itinerary_activity_path(@itinerary) %> <br>
+</section>
