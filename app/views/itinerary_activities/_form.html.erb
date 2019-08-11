@@ -29,7 +29,7 @@
   <div class="form-row">
     <div class="form-group col-sm-8">
       <%= f.label :location_name, "Location:" %>
-      <%= f.collection_select :location_name, Location.all, :name, :name, class: 'form-control' %>
+      <%= f.collection_select :location_name, Location.all.order(:country), :name, :name, class: 'form-control' %>
     </div>
   </div>
   <div class="form-row">

@@ -6,12 +6,4 @@ class Activity < ApplicationRecord
   validates_presence_of :name, on: :create
   validates_uniqueness_of :name
 
-  # def activity_category=(name)
-  #     self.activity_category = ActivityCategory.find_or_create_by(name: name)
-  # end
-  #
-  # def activity_category
-  #    self.activity_category ? self.activity_category.name : nil
-  # end
-
 end

@@ -1,0 +1,27 @@
+<section>
+<h3>Activities</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Activity Name</th>
+          <th scope="col">Activity Category</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @activities.each do |activity| %>
+        <tr>
+          <td><%= link_to activity.name, activity_path(activity) %></td>
+          <td><%= ActivityCategory.find(activity.activity_category_id).name%></td>
+          <td><%= link_to "Edit", edit_activity_path(activity) %></td>
+          <td><%= link_to "Delete", activity_path(activity), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+
+    <% end %>
+  </tbody>
+</table>
+</section>
+<section>
+<%= link_to "Create new activity", new_activity_path %>
+</section>

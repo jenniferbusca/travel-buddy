@@ -30,8 +30,8 @@
           <td><%= itinerary_activity.end_date.strftime("%m/%d/%Y") %> <%= itinerary_activity.end_time.strftime("%l:%M %p") %></td>
           <td><%= itinerary_activity.activity.name.capitalize%></td>
           <td><%= itinerary_activity.location.name%></td>
-          <td><%= link_to "Edit", edit_itinerary_itinerary_activity_path(@itinerary) %></td>
-          <td><%= link_to "Delete", itinerary_activity_path(@itinerary), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to "Edit", edit_itinerary_itinerary_activity_path(@itinerary, itinerary_activity) %></td>
+          <td><%= link_to "Delete", itinerary_activity_path(itinerary_activity), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
         <% end %>
     <% else %>

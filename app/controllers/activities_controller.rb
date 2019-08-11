@@ -2,6 +2,7 @@ class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
 
   def index
+    @activities = Activity.all.order(:name)
   end
 
   def new
