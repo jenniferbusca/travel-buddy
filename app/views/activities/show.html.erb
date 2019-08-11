@@ -1,0 +1,10 @@
+<section>
+  <div class="card" style="width: 50%">
+    <div class="card-body">
+      <h5 class="card-title"><%= @activity.name %></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= @activity_category.name %></h6>
+      <%= link_to "Edit Activity", edit_activity_path(@activity), class: "card-link"%>
+      <%= link_to "Delete Activity", activity_path(@activity), method: :delete %>
+    </div>
+  </div>
+</section>

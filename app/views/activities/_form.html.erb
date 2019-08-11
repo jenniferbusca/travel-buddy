@@ -1,0 +1,17 @@
+<%= form_for(activity) do |f| %>
+  <div class="form-row">
+    <div class="col-md-6 col-md-offset-3">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+    <br>
+    <div class="form-row">
+      <div class="form-group col-sm-8">
+        <%= f.label :activity_category, "Category:" %>
+        <%= f.collection_select :activity_category, ActivityCategory.all.order(:name), :id, :name, class: 'form-control' %>
+      </div>
+    </div>
+    <%= f.hidden_field :itinerary_id, :value => params[:format] %>
+  </div>
+</div>
+<%= f.submit submit_text, class: 'btn btn-form btn-primary' %>
+<% end %>

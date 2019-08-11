@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :itinerary_activities, only: [:new, :create, :edit, :update]
   end
   resources :itinerary_activities
+  resources :activities
 
   # get ':user_id/itineraries' => 'itineraries#index', :as => 'user_itineraries'
   get 'signup' => 'users#new'

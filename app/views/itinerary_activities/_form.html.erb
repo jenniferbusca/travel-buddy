@@ -19,6 +19,19 @@
     </div>
   <% end %>
 
+    <div class="form-row">
+      <div class="form-group col-sm-8">
+      <%= f.label :activity_name, "Activity:" %>
+      <%= f.collection_select :activity_name, Activity.all.order(:name), :name, :name, class: 'form-control' %>
+      Don't see your activity? <%= link_to "Create activity", new_activity_path(@itinerary) %>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-sm-8">
+      <%= f.label :location_name, "Location:" %>
+      <%= f.collection_select :location_name, Location.all, :name, :name, class: 'form-control' %>
+    </div>
+  </div>
   <div class="form-row">
     <div class="form-group col-sm-4">
       <%= f.label :start_date %>
@@ -39,23 +52,7 @@
       <%= f.time_field :end_time, class: 'form-control' %>
     </div>
   </div>
-  <div class="form-row">
-    <div class="form-group col-sm-8">
-      <%= f.label :location_name, "Location:" %>
-      <%= f.collection_select :location_name, Location.all, :name, :name, class: 'form-control' %>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="form-group col-sm-8">
-      <%= f.label :activity_name, "Activity:"%>
-      <%= f.text_field :activity_name, list: "activity_autocomplete", class: 'form-control' %>
-      <datalist id="activity_autocomplete">
-        <% Activity.all.each do |activity| %>
-          <option value="<%= activity.name.capitalize %>">
-        <% end %>
-      </datalist>
-    </div>
-  </div>
+
   <%= f.hidden_field :itinerary_id, :value => @itinerary.id %>
   <%= f.submit submit_text, class: 'btn btn-form btn-primary' %>
 <% end %>

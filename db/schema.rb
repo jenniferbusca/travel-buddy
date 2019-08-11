@@ -10,13 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_09_204652) do
+ActiveRecord::Schema.define(version: 2019_08_11_020409) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
-    t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "activity_category_id"
+  end
+
+  create_table "activity_categories", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "itineraries", force: :cascade do |t|

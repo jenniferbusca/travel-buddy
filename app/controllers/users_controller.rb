@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  layout "session"
   before_action :set_user, only: [:edit, :update, :destroy]
 
   def show
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in(@user) #sets session id for user
-      redirect_to @user
+      redirect_to itineraries_path
     else
       render 'new'
     end

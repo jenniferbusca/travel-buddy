@@ -27,7 +27,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <%= link_to "Itineraries", itineraries_path(current_user) %>
+            <%= link_to "Itineraries", itineraries_path %>
           </li>
           <li class="nav-item">
             <%= link_to "Create Itinerary", new_itinerary_path(current_user) %>
@@ -43,9 +43,27 @@
     </nav>
     <div class="container">
       <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-8">
           <%= yield %>
         </div>
+      <div class="col-sm-4">
+        <section>
+        <% unless Itinerary.blank? %>
+          <div class="card">
+            <div class="card-body">
+              <img class="card-img-top sidebar-img" src="/lightbulb.png" alt="Card image cap">
+              <h5 class="card-title">Inspiration from other members</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                  <% random_user = Itinerary.pluck(:user_id).sample %>
+                  <% @user = User.find(random_user) %>
+                  Member name: <%= @user.name %>
+                </h6>
+                <p class="card-text">Future Trip: <%= @user.itineraries.first.name %></p>
+            </div>
+          </div>
+          <% end %>
+        </section>
+      </div>
       </div>
     </div>
   </body>
