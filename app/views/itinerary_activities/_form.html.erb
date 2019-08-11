@@ -1,3 +1,4 @@
+<section>
 <%= form_for itinerary_activity do |f| %>
   <% if itinerary_activity.errors.any? %>
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -21,14 +22,14 @@
 
     <div class="form-row">
       <div class="form-group col-sm-8">
-      <%= f.label :activity_name, "Activity:" %>
+      <%= f.label :activity_name, "Activity:" %><br>
       <%= f.collection_select :activity_name, Activity.all.order(:name), :name, :name, class: 'form-control' %>
       Don't see your activity? <%= link_to "Create activity", new_activity_path(@itinerary) %>
     </div>
   </div>
   <div class="form-row">
     <div class="form-group col-sm-8">
-      <%= f.label :location_name, "Location:" %>
+      <%= f.label :location_name, "Location:" %><br>
       <%= f.collection_select :location_name, Location.all.order(:country), :name, :name, class: 'form-control' %>
     </div>
   </div>
@@ -56,3 +57,4 @@
   <%= f.hidden_field :itinerary_id, :value => @itinerary.id %>
   <%= f.submit submit_text, class: 'btn btn-form btn-primary' %>
 <% end %>
+</section>

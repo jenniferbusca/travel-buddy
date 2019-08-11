@@ -6,7 +6,7 @@
     <br>
     <div class="form-row">
       <div class="form-group col-sm-8">
-        <%= f.label :activity_category, "Category:" %>
+        <%= f.label :activity_category, "Select a Category:" %>
         <%= f.collection_select :activity_category, ActivityCategory.all.order(:name), :id, :name, class: 'form-control' %>
       </div>
     </div>
