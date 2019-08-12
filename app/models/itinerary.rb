@@ -6,7 +6,11 @@ class Itinerary < ApplicationRecord
   validates :end_date_valid?, acceptance: true
 
   def end_date_valid?
-    self.end_date < self.start_date ? false : true
+    unless self.start_date.blank? || self.end_date.blank?
+      self.end_date < self.start_date ? false : true
+    else
+      false
+    end
   end
 
   def future_itinerary?

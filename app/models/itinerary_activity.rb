@@ -24,11 +24,15 @@ class ItineraryActivity < ApplicationRecord
   end
 
   def activity_datetime_valid?
-    if self.start_date < self.end_date
-      true
-    elsif
-      self.end_date.to_date == self.start_date.to_date && self.start_time < self.end_time
-      true
+    unless self.start_date.blank? || self.end_date.blank?
+      if self.start_date < self.end_date
+        true
+      elsif
+        self.end_date.to_date == self.start_date.to_date && self.start_time < self.end_time
+        true
+      else
+        false
+      end
     else
       false
     end
