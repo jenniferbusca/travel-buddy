@@ -1,4 +1,23 @@
 <%= form_for(user) do |f| %>
+<% if user.errors.any? %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div id="error_explanation">
+      <h3>
+        <%= pluralize(user.errors.count, "error") %>
+        prohibited this user from being saved:
+      </h3>
+
+      <ul>
+      <% user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<% end %>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <%= f.label :name %>
