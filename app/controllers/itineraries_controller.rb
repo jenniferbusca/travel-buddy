@@ -22,6 +22,7 @@ class ItinerariesController < ApplicationController
 
   def show
     @itinerary_activities = ItineraryActivity.where(:itinerary_id => @itinerary.id).order(:start_date, :start_time)
+    session[:itinerary_id] = @itinerary.id
   end
 
   def edit

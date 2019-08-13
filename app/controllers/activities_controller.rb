@@ -13,7 +13,7 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new(name: activity_params[:name])
     @activity.activity_category_id = activity_params[:activity_category]
     if @activity.save
-      redirect_to new_itinerary_itinerary_activity_path(activity_params[:itinerary_id])
+      redirect_to new_itinerary_itinerary_activity_path(session[:itinerary_id])
     else
       render 'new'
     end

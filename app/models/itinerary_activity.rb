@@ -5,7 +5,7 @@ class ItineraryActivity < ApplicationRecord
   has_many :users, through: :itineraries
   accepts_nested_attributes_for :activity
   validates_presence_of :start_date, :start_time, :end_date, :end_time, :location, on: :create
-  validates :activity_datetime_valid?, acceptance: true
+  validates :dates_invalid, acceptance: { message: '- End date must be later than start date.' }
 
   def activity_name=(name)
       self.activity = Activity.find_or_create_by(name: name)
@@ -23,7 +23,7 @@ class ItineraryActivity < ApplicationRecord
      self.location ? self.location.name : nil
   end
 
-  def activity_datetime_valid?
+  def dates_invalid
     unless self.start_date.blank? || self.end_date.blank?
       if self.start_date < self.end_date
         true

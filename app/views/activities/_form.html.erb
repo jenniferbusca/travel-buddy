@@ -29,7 +29,6 @@
         <%= f.collection_select :activity_category, ActivityCategory.all.order(:name), :id, :name, class: 'form-control' %>
       </div>
     </div>
-    <%= f.hidden_field :itinerary_id, :value => params[:format] %>
   </div>
 </div>
 <%= f.submit submit_text, class: 'btn btn-form btn-primary' %>

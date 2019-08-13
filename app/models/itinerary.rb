@@ -3,9 +3,9 @@ class Itinerary < ApplicationRecord
   has_many :itinerary_activities
   has_many :activities, through: :itinerary_activities
   has_many :locations, through: :itinerary_activities
-  validates :end_date_valid?, acceptance: true
+  validates :dates_invalid, acceptance: { message: '- End date must be later than start date.' }
 
-  def end_date_valid?
+  def dates_invalid
     unless self.start_date.blank? || self.end_date.blank?
       self.end_date < self.start_date ? false : true
     else

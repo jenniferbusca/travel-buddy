@@ -24,7 +24,7 @@
       <div class="form-group col-sm-8">
       <%= f.label :activity_name, "Activity:" %><br>
       <%= f.collection_select :activity_name, Activity.all.order(:name), :name, :name, class: 'form-control' %>
-      Don't see your activity? <%= link_to "Create activity", new_activity_path(@itinerary) %>
+      Don't see your activity? <%= link_to "Create activity", new_activity_path %>
     </div>
   </div>
   <div class="form-row">
